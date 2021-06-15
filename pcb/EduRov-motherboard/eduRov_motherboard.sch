@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A3 16535 11693
 encoding utf-8
-Sheet 1 5
+Sheet 1 3
 Title "eduROV motherboard"
 Date ""
 Rev "A"
@@ -29,12 +29,12 @@ GND
 Text GLabel 5875 9600 0    60   Input ~ 0
 GND
 Text GLabel 9600 8725 2    60   Input ~ 0
-+Bat1
++Batt
 $Comp
-L Device:R R110
+L Device:R R108
 U 1 1 59CD15CB
 P 9550 9525
-F 0 "R110" V 9630 9525 50  0000 C CNN
+F 0 "R108" V 9630 9525 50  0000 C CNN
 F 1 "10k" V 9550 9525 50  0000 C CNN
 F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 9480 9525 50  0001 C CNN
 F 3 "" H 9550 9525 50  0000 C CNN
@@ -50,21 +50,21 @@ PressMonitor
 $Comp
 L Connector_Generic:Conn_01x02 2Pscrew103
 U 1 1 59CD3D3E
-P 13825 4525
-F 0 "2Pscrew103" H 14175 4475 50  0000 C CNN
-F 1 "Channel 3" H 14125 4575 50  0000 C CNN
-F 2 "TerminalBlock_Altech:Altech_AK300_1x02_P5.00mm_45-Degree" H 13825 4525 50  0001 C CNN
-F 3 "" H 13825 4525 50  0000 C CNN
-	1    13825 4525
+P 13925 4750
+F 0 "2Pscrew103" H 14275 4700 50  0000 C CNN
+F 1 "Channel 3" H 14225 4800 50  0000 C CNN
+F 2 "TerminalBlock_Altech:Altech_AK300_1x02_P5.00mm_45-Degree" H 13925 4750 50  0001 C CNN
+F 3 "" H 13925 4750 50  0000 C CNN
+	1    13925 4750
 	1    0    0    1   
 $EndComp
 Text GLabel 12225 7500 0    60   Input ~ 0
 IO_LED
 $Comp
-L Device:R R112
+L Device:R R110
 U 1 1 59D35BF6
 P 12425 7650
-F 0 "R112" V 12505 7650 50  0000 C CNN
+F 0 "R110" V 12505 7650 50  0000 C CNN
 F 1 "10k" V 12425 7650 50  0000 C CNN
 F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 12355 7650 50  0001 C CNN
 F 3 "" H 12425 7650 50  0000 C CNN
@@ -85,7 +85,7 @@ F 3 "" H 13575 7025 50  0000 C CNN
 	1    0    0    -1  
 $EndComp
 Text GLabel 12225 6925 0    60   Input ~ 0
-+Bat1
++Batt
 $Comp
 L Edurov:IRL540NPBF Q101
 U 1 1 5A60C2A4
@@ -158,10 +158,10 @@ Wire Wire Line
 	2825 5425 2825 5325
 Connection ~ 2925 5425
 $Comp
-L Device:R R111
+L Device:R R109
 U 1 1 5F76240D
 P 9550 9825
-F 0 "R111" V 9630 9825 50  0000 C CNN
+F 0 "R109" V 9630 9825 50  0000 C CNN
 F 1 "10k" V 9550 9825 50  0000 C CNN
 F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 9480 9825 50  0001 C CNN
 F 3 "" H 9550 9825 50  0000 C CNN
@@ -169,10 +169,10 @@ F 3 "" H 9550 9825 50  0000 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Device:R R109
+L Device:R R107
 U 1 1 59CD11FD
 P 9550 9225
-F 0 "R109" V 9630 9225 50  0000 C CNN
+F 0 "R107" V 9630 9225 50  0000 C CNN
 F 1 "10k" V 9550 9225 50  0000 C CNN
 F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 9480 9225 50  0001 C CNN
 F 3 "" H 9550 9225 50  0000 C CNN
@@ -189,10 +189,6 @@ Wire Wire Line
 	9550 10025 9600 10025
 Wire Wire Line
 	3325 5325 3325 5425
-Text GLabel 12075 5625 0    60   Input ~ 0
-IO4A
-Text GLabel 12075 5725 0    60   Input ~ 0
-IO4B
 $Comp
 L Device:R R105
 U 1 1 59CD3229
@@ -206,8 +202,6 @@ F 3 "" H 6375 3525 50  0000 C CNN
 $EndComp
 Text GLabel 6375 3675 3    60   Input ~ 0
 GND
-Text GLabel 12075 5475 0    60   Input ~ 0
-IOEN
 Text GLabel 7925 3925 2    60   Input ~ 0
 BattMonitor
 Text GLabel 7925 3825 2    60   Input ~ 0
@@ -215,10 +209,10 @@ PressMonitor
 Text GLabel 7925 3725 2    60   Input ~ 0
 TempMonitor
 $Comp
-L Device:R R108
+L Device:R R106
 U 1 1 5FB9B542
 P 9550 8925
-F 0 "R108" V 9630 8925 50  0000 C CNN
+F 0 "R106" V 9630 8925 50  0000 C CNN
 F 1 "10k" V 9550 8925 50  0000 C CNN
 F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 9480 8925 50  0001 C CNN
 F 3 "" H 9550 8925 50  0000 C CNN
@@ -233,134 +227,64 @@ Wire Wire Line
 Connection ~ 12425 7500
 Wire Wire Line
 	12425 7500 12875 7500
-Text Label 13225 4425 0    60   ~ 0
+Text Label 13325 4650 0    60   ~ 0
 Mot3+
-Text Label 13225 4525 0    60   ~ 0
+Text Label 13325 4750 0    60   ~ 0
 Mot3-
 $Comp
 L Connector_Generic:Conn_01x02 2Pscrew101
 U 1 1 59CD3B58
-P 13825 2175
-F 0 "2Pscrew101" H 14175 2125 50  0000 C CNN
-F 1 "Channel 1" H 14125 2225 50  0000 C CNN
-F 2 "TerminalBlock_Altech:Altech_AK300_1x02_P5.00mm_45-Degree" H 13825 2175 50  0001 C CNN
-F 3 "" H 13825 2175 50  0000 C CNN
-	1    13825 2175
+P 13900 2425
+F 0 "2Pscrew101" H 14250 2375 50  0000 C CNN
+F 1 "Channel 1" H 14200 2475 50  0000 C CNN
+F 2 "TerminalBlock_Altech:Altech_AK300_1x02_P5.00mm_45-Degree" H 13900 2425 50  0001 C CNN
+F 3 "" H 13900 2425 50  0000 C CNN
+	1    13900 2425
 	1    0    0    1   
 $EndComp
-$Sheet
-S 12075 5325 1050 700 
-U 5FFEC45F
-F0 "MotorController_4" 60
-F1 "MotorController.sch" 60
-F2 "ENABLE" I L 12075 5475 60 
-F3 "IN1" I L 12075 5625 60 
-F4 "IN2" I L 12075 5725 60 
-F5 "SENSE" I L 12075 5875 60 
-F6 "GND" I R 13125 5875 60 
-F7 "+Bat" I R 13125 5475 60 
-F8 "MOT+" I R 13125 5625 60 
-F9 "MOT-" I R 13125 5725 60 
-$EndSheet
-Text GLabel 13125 5875 2    60   Input ~ 0
+Text GLabel 13200 3275 2    60   Input ~ 0
 GND
-Text GLabel 13125 5475 2    60   Input ~ 0
-+Bat1
-Text GLabel 12075 4675 0    60   Input ~ 0
-Sense3
-$Sheet
-S 12075 4125 1050 700 
-U 6003A868
-F0 "MotorController_3" 60
-F1 "MotorController.sch" 60
-F2 "ENABLE" I L 12075 4275 60 
-F3 "IN1" I L 12075 4425 60 
-F4 "IN2" I L 12075 4525 60 
-F5 "SENSE" I L 12075 4675 60 
-F6 "GND" I R 13125 4675 60 
-F7 "+Bat" I R 13125 4275 60 
-F8 "MOT+" I R 13125 4425 60 
-F9 "MOT-" I R 13125 4525 60 
-$EndSheet
-Text GLabel 13125 4675 2    60   Input ~ 0
-GND
-Text GLabel 13125 4275 2    60   Input ~ 0
-+Bat1
-$Sheet
-S 12075 2925 1050 700 
-U 6003F027
-F0 "MotorController_2" 60
-F1 "MotorController.sch" 60
-F2 "ENABLE" I L 12075 3075 60 
-F3 "IN1" I L 12075 3225 60 
-F4 "IN2" I L 12075 3325 60 
-F5 "SENSE" I L 12075 3475 60 
-F6 "GND" I R 13125 3475 60 
-F7 "+Bat" I R 13125 3075 60 
-F8 "MOT+" I R 13125 3225 60 
-F9 "MOT-" I R 13125 3325 60 
-$EndSheet
-Text GLabel 13125 3475 2    60   Input ~ 0
-GND
-Text GLabel 13125 3075 2    60   Input ~ 0
-+Bat1
-$Sheet
-S 12075 1775 1050 700 
-U 60043462
-F0 "MotorController_1" 60
-F1 "MotorController.sch" 60
-F2 "ENABLE" I L 12075 1925 60 
-F3 "IN1" I L 12075 2075 60 
-F4 "IN2" I L 12075 2175 60 
-F5 "SENSE" I L 12075 2325 60 
-F6 "GND" I R 13125 2325 60 
-F7 "+Bat" I R 13125 1925 60 
-F8 "MOT+" I R 13125 2075 60 
-F9 "MOT-" I R 13125 2175 60 
-$EndSheet
-Text GLabel 13125 2325 2    60   Input ~ 0
-GND
-Text GLabel 13125 1925 2    60   Input ~ 0
-+Bat1
+Text GLabel 13200 1950 2    60   Input ~ 0
++Batt
 $Comp
 L Connector_Generic:Conn_01x02 2Pscrew104
 U 1 1 59CD3CF4
-P 13825 5725
-F 0 "2Pscrew104" H 14175 5675 50  0000 C CNN
-F 1 "Channel 4" H 14125 5775 50  0000 C CNN
-F 2 "TerminalBlock_Altech:Altech_AK300_1x02_P5.00mm_45-Degree" H 13825 5725 50  0001 C CNN
-F 3 "" H 13825 5725 50  0000 C CNN
-	1    13825 5725
+P 13925 5325
+F 0 "2Pscrew104" H 14275 5275 50  0000 C CNN
+F 1 "Channel 4" H 14225 5375 50  0000 C CNN
+F 2 "TerminalBlock_Altech:Altech_AK300_1x02_P5.00mm_45-Degree" H 13925 5325 50  0001 C CNN
+F 3 "" H 13925 5325 50  0000 C CNN
+	1    13925 5325
 	1    0    0    1   
 $EndComp
 Wire Wire Line
-	13125 4425 13625 4425
+	13225 4650 13725 4650
 Wire Wire Line
-	13125 4525 13625 4525
-Text Label 13225 5625 0    60   ~ 0
+	13225 4750 13725 4750
+Text Label 13325 5225 0    60   ~ 0
 Mot4+
-Text Label 13225 5725 0    60   ~ 0
+Text Label 13325 5325 0    60   ~ 0
 Mot4-
 Wire Wire Line
-	13125 5625 13625 5625
+	13225 5225 13725 5225
 Wire Wire Line
-	13125 5725 13625 5725
-Text Label 13225 3225 0    60   ~ 0
+	13225 5325 13725 5325
+Text Label 13300 2900 0    60   ~ 0
 Mot2+
-Text Label 13225 3325 0    60   ~ 0
+Text Label 13300 3000 0    60   ~ 0
 Mot2-
 Wire Wire Line
-	13125 3225 13625 3225
+	13200 2900 13700 2900
 Wire Wire Line
-	13125 3325 13625 3325
-Text Label 13225 2075 0    60   ~ 0
+	13200 3000 13700 3000
+Text Label 13300 2325 0    60   ~ 0
 Mot1+
-Text Label 13225 2175 0    60   ~ 0
+Text Label 13300 2425 0    60   ~ 0
 Mot1-
 Wire Wire Line
-	13125 2075 13625 2075
+	13200 2325 13700 2325
 Wire Wire Line
-	13125 2175 13625 2175
+	13200 2425 13700 2425
 $Comp
 L MCU_Module:Arduino_Nano_v3.x A101
 U 1 1 60095748
@@ -413,35 +337,27 @@ Wire Wire Line
 	6375 3325 6925 3325
 Text GLabel 7625 2725 1    60   Input ~ 0
 +5V
-Text GLabel 12075 5875 0    60   Input ~ 0
-Sense4
-Text GLabel 12075 2325 0    60   Input ~ 0
+Text GLabel 12125 2525 0    60   Input ~ 0
 Sense1
-Text GLabel 12075 3475 0    60   Input ~ 0
+Text GLabel 12125 3100 0    60   Input ~ 0
 Sense2
-Text GLabel 12075 1925 0    60   Input ~ 0
+Text GLabel 12125 1950 0    60   Input ~ 0
 IOEN
-Text GLabel 12075 3075 0    60   Input ~ 0
+Text GLabel 12150 4275 0    60   Input ~ 0
 IOEN
-Text GLabel 12075 4275 0    60   Input ~ 0
-IOEN
-Text GLabel 12075 3225 0    60   Input ~ 0
+Text GLabel 12125 2900 0    60   Input ~ 0
 IO2A
-Text GLabel 12075 2175 0    60   Input ~ 0
+Text GLabel 12125 2425 0    60   Input ~ 0
 IO1B
-Text GLabel 12075 3325 0    60   Input ~ 0
+Text GLabel 12125 3000 0    60   Input ~ 0
 IO2B
-Text GLabel 12075 2075 0    60   Input ~ 0
+Text GLabel 12125 2325 0    60   Input ~ 0
 IO1A
-Text GLabel 12075 4525 0    60   Input ~ 0
-IO3B
-Text GLabel 12075 4425 0    60   Input ~ 0
-IO3A
 $Comp
-L Device:C C102
+L Device:C C101
 U 1 1 5FC68142
 P 12600 7200
-F 0 "C102" H 12475 7250 50  0000 R CNN
+F 0 "C101" H 12475 7250 50  0000 R CNN
 F 1 "100nF" H 12475 7175 50  0000 R CNN
 F 2 "Capacitor_THT:C_Disc_D5.0mm_W2.5mm_P2.50mm" H 12638 7050 50  0001 C CNN
 F 3 "~" H 12600 7200 50  0001 C CNN
@@ -552,12 +468,12 @@ Text GLabel 3025 2725 1    60   Input ~ 0
 $Comp
 L Connector_Generic:Conn_01x02 2Pscrew102
 U 1 1 59CCD414
-P 13825 3325
-F 0 "2Pscrew102" H 14175 3275 50  0000 C CNN
-F 1 "Channel 2" H 14125 3375 50  0000 C CNN
-F 2 "TerminalBlock_Altech:Altech_AK300_1x02_P5.00mm_45-Degree" H 13825 3325 50  0001 C CNN
-F 3 "" H 13825 3325 50  0000 C CNN
-	1    13825 3325
+P 13900 3000
+F 0 "2Pscrew102" H 14250 2950 50  0000 C CNN
+F 1 "Channel 2" H 14200 3050 50  0000 C CNN
+F 2 "TerminalBlock_Altech:Altech_AK300_1x02_P5.00mm_45-Degree" H 13900 3000 50  0001 C CNN
+F 3 "" H 13900 3000 50  0000 C CNN
+	1    13900 3000
 	1    0    0    1   
 $EndComp
 Text GLabel 7525 2725 1    60   Input ~ 0
@@ -569,45 +485,14 @@ Wire Notes Line
 Wire Notes Line
 	10700 475  10700 11200
 Wire Wire Line
-	1225 9575 1225 9775
-Wire Wire Line
-	1525 9575 1525 9425
-Connection ~ 1525 9575
-Wire Wire Line
 	1525 9775 1575 9775
 Connection ~ 1525 9775
 Wire Wire Line
-	1525 9425 1475 9425
-Wire Wire Line
-	1525 9775 1525 9575
-Wire Wire Line
-	1225 9575 1225 9425
-Connection ~ 1225 9575
-Wire Wire Line
 	1225 9425 1325 9425
-$Comp
-L Device:CP C101
-U 1 1 600EBD67
-P 1375 9575
-AR Path="/600EBD67" Ref="C101"  Part="1" 
-AR Path="/5FFEC45F/600EBD67" Ref="C?"  Part="1" 
-AR Path="/60017CE1/600EBD67" Ref="C?"  Part="1" 
-AR Path="/600184A3/600EBD67" Ref="C?"  Part="1" 
-AR Path="/60018874/600EBD67" Ref="C?"  Part="1" 
-AR Path="/6003A868/600EBD67" Ref="C?"  Part="1" 
-AR Path="/6003F027/600EBD67" Ref="C?"  Part="1" 
-AR Path="/60043462/600EBD67" Ref="C?"  Part="1" 
-F 0 "C101" V 1225 9875 50  0000 C CNN
-F 1 "470uF" V 1325 9875 50  0000 C CNN
-F 2 "Capacitor_THT:CP_Radial_D12.5mm_P5.00mm" H 1413 9425 50  0001 C CNN
-F 3 "~" H 1375 9575 50  0001 C CNN
-	1    1375 9575
-	0    1    1    0   
-$EndComp
 Text GLabel 2775 9425 3    60   Input ~ 0
 GND
 Text GLabel 2675 9425 3    60   Input ~ 0
-+Bat1
++Batt
 Text GLabel 2975 9425 3    60   Input ~ 0
 +5V
 Text GLabel 2875 9425 3    60   Input ~ 0
@@ -638,19 +523,16 @@ Text GLabel 1475 9775 3    60   Input ~ 0
 $Comp
 L Connector_Generic:Conn_01x02 P101
 U 1 1 59F0943E
-P 1375 9225
-F 0 "P101" H 1375 9375 50  0000 C CNN
-F 1 "Battery connector" V 1475 9225 50  0000 C CNN
-F 2 "TerminalBlock_Altech:Altech_AK300_1x02_P5.00mm_45-Degree" H 1375 9225 50  0001 C CNN
-F 3 "" H 1375 9225 50  0000 C CNN
-	1    1375 9225
+P 1325 9225
+F 0 "P101" H 1325 9375 50  0000 C CNN
+F 1 "Battery connector" V 1425 9225 50  0000 C CNN
+F 2 "TerminalBlock_Altech:Altech_AK300_1x02_P5.00mm_45-Degree" H 1325 9225 50  0001 C CNN
+F 3 "" H 1325 9225 50  0000 C CNN
+	1    1325 9225
 	0    -1   -1   0   
 $EndComp
 Text GLabel 1225 9775 3    60   Input ~ 0
-+Bat1
-Connection ~ 1475 9425
-Wire Wire Line
-	1475 9425 1425 9425
++Batt
 Text Notes 650  1075 0    394  ~ 0
 Computing
 Text Notes 550  8150 0    394  ~ 0
@@ -707,10 +589,91 @@ Text GLabel 13175 7025 0    60   Input ~ 0
 LED-
 Text Notes 5925 9975 0    60   ~ 0
 Sensor connectors compatible with Adafruit Stemma system.
-Text GLabel 5875 9500 0    60   Input ~ 0
-+5V
-Text GLabel 7200 9500 0    60   Input ~ 0
-+5V
 Text GLabel 8200 9600 0    60   Input ~ 0
 +3V3
+Wire Wire Line
+	1525 9425 1525 9775
+Wire Wire Line
+	1225 9425 1225 9775
+Wire Wire Line
+	1425 9425 1525 9425
+$Sheet
+S 12150 4125 1075 1575
+U 60A21E25
+F0 "MotorController2" 60
+F1 "MotorController.sch" 60
+F2 "ENABLE" I L 12150 4275 60 
+F3 "GND" I R 13225 5600 60 
+F4 "+Bat" I R 13225 4275 60 
+F5 "MOTA+" I R 13225 5225 50 
+F6 "MOTA-" I R 13225 5325 50 
+F7 "+5V" I R 13225 4375 50 
+F8 "MOTB+" I R 13225 4650 50 
+F9 "MOTB-" I R 13225 4750 50 
+F10 "IN1B" I L 12150 4650 50 
+F11 "IN2B" I L 12150 4750 50 
+F12 "IN2A" I L 12150 5325 50 
+F13 "IN1A" I L 12150 5225 50 
+F14 "SENSEA" I L 12150 5425 50 
+F15 "SENSEB" I L 12150 4850 50 
+$EndSheet
+Text GLabel 13225 4275 2    60   Input ~ 0
++Batt
+Text GLabel 13225 5600 2    60   Input ~ 0
+GND
+Text GLabel 13225 4375 2    60   Input ~ 0
++5V
+Text GLabel 12150 5425 0    60   Input ~ 0
+Sense4
+Text GLabel 12150 5325 0    60   Input ~ 0
+IO4B
+Text GLabel 12150 5225 0    60   Input ~ 0
+IO4A
+Text GLabel 12150 4850 0    60   Input ~ 0
+Sense3
+Text GLabel 12150 4750 0    60   Input ~ 0
+IO3B
+Text GLabel 12150 4650 0    60   Input ~ 0
+IO3A
+$Sheet
+S 12125 1800 1075 1575
+U 60A3400F
+F0 "MotorController1" 60
+F1 "MotorController.sch" 60
+F2 "ENABLE" I L 12125 1950 60 
+F3 "GND" I R 13200 3275 60 
+F4 "+Bat" I R 13200 1950 60 
+F5 "MOTA+" I R 13200 2900 50 
+F6 "MOTA-" I R 13200 3000 50 
+F7 "+5V" I R 13200 2050 50 
+F8 "MOTB+" I R 13200 2325 50 
+F9 "MOTB-" I R 13200 2425 50 
+F10 "IN1B" I L 12125 2325 50 
+F11 "IN2B" I L 12125 2425 50 
+F12 "IN2A" I L 12125 3000 50 
+F13 "IN1A" I L 12125 2900 50 
+F14 "SENSEA" I L 12125 3100 50 
+F15 "SENSEB" I L 12125 2525 50 
+$EndSheet
+$Comp
+L Connector_Generic:Conn_01x03 P?
+U 1 1 60ABB9B2
+P 5425 8375
+F 0 "P?" V 5389 8087 50  0000 R CNN
+F 1 "Conn_01x03" V 5298 8087 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 5425 8375 50  0001 C CNN
+F 3 "~" H 5425 8375 50  0001 C CNN
+	1    5425 8375
+	0    -1   -1   0   
+$EndComp
+Text GLabel 5325 8575 3    60   Input ~ 0
++5V
+Text GLabel 5525 8575 3    60   Input ~ 0
++3V3
+Text GLabel 5425 8575 3    60   Input ~ 0
+Vsens
+Text GLabel 5875 9500 0    60   Input ~ 0
+Vsens
+Text GLabel 7200 9500 0    60   Input ~ 0
+Vsens
 $EndSCHEMATC
