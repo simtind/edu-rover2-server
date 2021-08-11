@@ -1,1 +1,3 @@
 .idea
+pyedurov2/*.egg-info
+dist
