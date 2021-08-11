@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: pyedurov2-simtind
+Version: 0.0.1
+Summary: Server package for Edu-ROV hardware v0.7
+Home-page: https://github.com/simtind/edu-rover2
+Author: Simen August Tinderholt
+Author-email: simtind@gmail.com
+License: UNKNOWN
+Project-URL: Bug Tracker, https://github.com/simtind/edu-rover2/issues
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Requires-Python: >=3.6
+License-File: LICENSE
+
+UNKNOWN
+

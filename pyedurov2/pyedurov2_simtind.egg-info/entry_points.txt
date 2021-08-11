@@ -1,0 +1,3 @@
+[console_scripts]
+executable-name = pyedurov2:edurov_web
+

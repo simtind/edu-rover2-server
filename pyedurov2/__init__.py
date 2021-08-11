@@ -51,7 +51,3 @@ def edurov_web():
     io.ready.wait()
 
     WebServer(port=args.port, camera_server=camera, io_server=io).run()
-
-
-if __name__ == '__main__':
-    edurov_web()
