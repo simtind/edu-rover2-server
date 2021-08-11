@@ -1,1 +1,1 @@
-include pyedurov2/web/*/*
+include src/web/*/*

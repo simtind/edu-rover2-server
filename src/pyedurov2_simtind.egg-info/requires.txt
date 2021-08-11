@@ -1,0 +1,9 @@
+pip>=19.3
+picamera
+sense-hat
+pyserial-asyncio
+asyncio
+psutil
+websockets
+aiortc
+aiohttp
