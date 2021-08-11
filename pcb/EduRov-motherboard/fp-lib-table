@@ -1,3 +1,0 @@
-(fp_lib_table
-  (lib (name EduRov)(type KiCad)(uri ${KIPRJMOD}/EduRov.pretty)(options "")(descr ""))
-)
