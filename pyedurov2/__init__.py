@@ -36,7 +36,7 @@ def edurov_web():
     parser.add_argument(
         '--loglevel',
         type=str,
-        default='DEBUG',
+        default='INFO',
         help='Set log level')
 
     args = parser.parse_args()
