@@ -1,4 +1,5 @@
 import asyncio
+import json
 import logging
 import serial_asyncio
 import msgpack
@@ -15,7 +16,7 @@ class Arduino(object):
             self.logger.debug("Attempt to auto-detect Arduino serial port")
             coms = list_ports.comports()
             self.logger.debug(f"Available serial ports: {str([com.device for com in coms])}")
-            arduino = [com for com in coms if "Arduino" in com.description]
+            arduino = [com for com in coms if com.manufacturer is not None and "Arduino" in com.manufacturer]
             if arduino:
                 # We found an Arduino connected via USB
                 serial_port = arduino[0].device
@@ -47,16 +48,20 @@ class Arduino(object):
         await self.close()
 
     async def get_sensors(self):
-        received = (await self._reader.readline()).decode("ascii", errors="ignore").strip()
-        self.logger.debug(f"Received data from Arduino: {received}")
-        return msgpack.unpackb(received, encoding='ascii')
+        received = (await self._reader.readuntil(b"}"))
+        self.logger.debug(f"Received data from Arduino: {received.decode('ascii', errors='ignore')}")
+        try:
+            return json.loads(received)
+        except Exception as e:
+            logging.error(e)
+            return {}
 
     def set_interval(self, interval):
-        message = msgpack.packb({"interval" : interval})
+        message = json.dumps({"interval" : interval})
         self.logger.debug(f"Sent interval to Arduino: {message}")
-        self._writer.write(message)
+        self._writer.write(message.encode("ascii"))
 
     def set_actuators(self, values):
-        message = msgpack.packb(values)
+        message = json.dumps(values)
         self.logger.debug(f"Sent data to Arduino: {message}")
-        self._writer.write(message)
+        self._writer.write(message.encode("ascii"))
