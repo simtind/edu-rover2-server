@@ -16,7 +16,7 @@ import { GamePad }      from './gamepad.js';
                 cpu_temp:0, motor_port:0, motor_starboard:0, motor_up_1:0, motor_up_2:0};
     critical = {voltage:10.0, disk_space:500.0, cpu_temp:80.0};
 
-    actuators = {vertical:0.0, port:0.0, starboard:0.0, lights:0.0, sensor_interval:500}
+    actuators = {vertical:0.0, port:0.0, starboard:0.0, lights:0.0, interval:500}
 
     constructor() {
         var self = this;
@@ -84,13 +84,13 @@ import { GamePad }      from './gamepad.js';
     }
 
     SetUpdateFrequency(interval){
-        var interval = prompt("Set sensor update interval in ms", this.actuators["sensor_interval"]);
+        var interval = prompt("Set sensor update interval in ms", this.actuators["interval"]);
         if (interval){
             if (interval < 30){
                 alert('Sensor frequency can not be less than 30 ms');
                 interval = 30;
             }
-            this.actuators["sensor_interval"] = interval;
+            this.actuators["interval"] = interval;
         }
     }
 
