@@ -1,9 +1,8 @@
-import asyncio
 import json
 import logging
 import serial_asyncio
-import msgpack
 from serial.tools import list_ports
+from ..utility import is_raspberrypi
 
 
 class Arduino(object):
@@ -56,12 +55,12 @@ class Arduino(object):
             logging.error(e)
             return {}
 
-    def set_interval(self, interval):
-        message = json.dumps({"interval" : interval})
-        self.logger.debug(f"Sent interval to Arduino: {message}")
-        self._writer.write(message.encode("ascii"))
-
     def set_actuators(self, values):
-        message = json.dumps(values)
+        message =   f"{int(values['starboard'])}," + \
+                    f"{int(values['port'])}," + \
+                    f"{int(values['vertical'])}," + \
+                    f"{int(values['lights'])}," + \
+                    f"{int(values['interval'])}," + \
+                    f"{1 if values['armed'] else 0}\n"
         self.logger.debug(f"Sent data to Arduino: {message}")
         self._writer.write(message.encode("ascii"))

@@ -12,14 +12,14 @@ from ..utility import get_host_ip
 
 
 class IOServer(multiprocessing.Process):
-    """ Creates a new process that Exposes the ROV sensors and actuators as a websocket data stream """
+    """ Creates a new process that Exposes the Arduino, sense hat, and system sensors and actuators as a websocket data stream """
     def __init__(self, arduino_serial_port=None, arduino_baud_rate=115200, loglevel="INFO", port=8082):
         self.port = port
         self.serial_port = arduino_serial_port
         self.baud_rate = arduino_baud_rate
         self.loglevel = loglevel
         self.sensors = dict()
-        self.actuators = dict(sensor_interval=1)
+        self.actuators = dict()
         self.start_time = time.time()
         self.sensor_queue = None
         self.actuator_queue = None
@@ -33,7 +33,7 @@ class IOServer(multiprocessing.Process):
     async def stop(self):
         self.stop_event.set()
         self.join()
-        logging.debug("IO process terminated")
+        logging.debug("I/O process terminated")
 
     async def _wait_for_stop_event(self):
         while not self.stop_event.is_set():
@@ -58,7 +58,7 @@ class IOServer(multiprocessing.Process):
                 self.logger.debug("Get sense hat data")
                 await self.sensor_queue.put(await raspberry.get_sensors())
                 await self.sensor_queue.join()
-            await asyncio.sleep(self.actuators["sensor_interval"])
+            await asyncio.sleep(0.3)
 
     async def _collect_system_data(self):
         raspberry = system.SystemMonitor()
@@ -68,7 +68,7 @@ class IOServer(multiprocessing.Process):
                 self.logger.debug("Get system data")
                 await self.sensor_queue.put(await raspberry.get_system_data())
                 await self.sensor_queue.join()
-            await asyncio.sleep(10)
+            await asyncio.sleep(1)
 
     async def _send_sensors(self, websocket):
         while not self.stop_event.is_set():
@@ -80,7 +80,7 @@ class IOServer(multiprocessing.Process):
                 if empty:
                     break
             
-            self.logger.debug("Send sensor data")
+            self.logger.debug("Send arduino data to client")
             await websocket.send(json.dumps(self.sensors))
 
         # Drain the sensor queue so the other tasks can exit as well.
@@ -95,8 +95,6 @@ class IOServer(multiprocessing.Process):
             data = json.loads(data)
             self.logger.debug(f"Got websocket data {data}")
             async with self.actuator_lock:
-                if data["sensor_interval"] != self.actuators["sensor_interval"]:
-                    self.arduino.set_interval(data["sensor_interval"])
                 self.actuators.update(data)
                 self.arduino.set_actuators(self.actuators)
 
@@ -114,7 +112,7 @@ class IOServer(multiprocessing.Process):
 
     async def _task(self):
         logging.basicConfig(level=self.loglevel)
-        self.logger = logging.getLogger("IOServer")
+        self.logger = logging.getLogger("I/OServer")
         self.sensor_condition = asyncio.Condition()
         self.actuator_lock = asyncio.Lock()
         self.sensor_queue = asyncio.Queue()
@@ -125,7 +123,7 @@ class IOServer(multiprocessing.Process):
 
         async with arduino.Arduino(self.serial_port, self.baud_rate) as self.arduino:
             arduino_task = asyncio.create_task(self._collect_arduino_sensors())
-            arduino_task = asyncio.create_task(self._collect_sense_hat_sensors())
+            hat_task = asyncio.create_task(self._collect_sense_hat_sensors())
             system_task = asyncio.create_task(self._collect_system_data())
             self.logger.debug("Ready to send sensor data")
 
@@ -133,9 +131,10 @@ class IOServer(multiprocessing.Process):
 
             await self.server
             await arduino_task
+            await hat_task
             await system_task
 
-        self.logger.info('Shutting down i/o server')
+        self.logger.info('Shutting down I/O server')
         finish = time.time()
         seconds = finish - self.start_time
         self.logger.debug(f'I/O server was live for {seconds:.1f} seconds')

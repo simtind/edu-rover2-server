@@ -1,9 +1,9 @@
 import argparse
 import logging
 
-from server.cameraserver import CameraServer
-from server.ioserver import IOServer
-from server.webserver import WebServer
+from .server.cameraserver import CameraServer
+from .server.ioserver import IOServer
+from .server.webserver import WebServer
 
 
 def edurov_web():
@@ -43,11 +43,11 @@ def edurov_web():
 
     logging.basicConfig(level=args.loglevel)
 
+    ioserver = IOServer(args.serial, loglevel=args.loglevel)
     camera = CameraServer(args.r, args.fps, args.loglevel)
-    io = IOServer(args.serial, loglevel=args.loglevel)
 
     logging.info("Waiting for websocket servers to go online before starting web server")
+    ioserver.ready.wait()
     camera.ready.wait()
-    io.ready.wait()
 
-    WebServer(port=args.port, camera_server=camera, io_server=io).run()
+    WebServer(port=args.port, websocket_servers=[ioserver, camera]).run()
