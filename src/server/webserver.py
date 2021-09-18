@@ -7,7 +7,6 @@ import logging
 import signal
 import time
 from aiohttp import web
-import ssl
 from pathlib import Path
 
 from aiohttp.web_runner import GracefulExit
@@ -19,18 +18,13 @@ from ..utility import get_host_ip, is_osx, is_linux, is_windows
 
 class WebServer:
     async def on_shutdown(self, event):
-        await self.camera_server.stop()
-        await self.io_server.stop()
+        for server in self.websocket_servers:
+            await server.stop()
+        
         self.logger.info('Shutting down http server')
         finish = time.time()
         self.logger.debug(f'HTTP server was live for {finish - self.start:.1f} seconds')
-
-    async def serve_camera(self, request):
-        return web.Response(text=f"ws://{self.server_address}:{self.camera_server.port}")
-
-    async def serve_io(self, request):
-        return web.Response(text=f"ws://{self.server_address}:{self.io_server.port}")
-
+    
     async def serve_entry(self, request):
         raise web.HTTPFound(location="/index.html")
 
@@ -50,23 +44,19 @@ class WebServer:
                  server_address=None,
                  port=80, index_file=Path(__file__).parent.parent / "web" / "index.html",
                  log_level="INFO",
-                 camera_server=None,
-                 io_server=None):
+                 websocket_servers=list()):
         logging.basicConfig(level=log_level)
         self.logger = logging.getLogger("WebpageServer")
         self.root_dir = index_file.parent
         self.start = time.time()
         self.app = web.Application()
         self.app.on_shutdown.append(self.on_shutdown)
-        self.camera_server = camera_server
-        self.io_server = io_server
+        self.websocket_servers = websocket_servers
         self.pcs = set()
         self.is_shutdown = asyncio.Event()
 
         self.app.add_routes(
             [
-                web.get("/cameraserver", self.serve_camera),
-                web.get("/ioserver", self.serve_io),
                 web.get("/stop", self.stop),
                 web.get("/", self.serve_entry),
                 web.static("/", self.root_dir),

@@ -1,8 +1,8 @@
-import asyncio
+import json
 import logging
 import serial_asyncio
-import msgpack
 from serial.tools import list_ports
+from ..utility import is_raspberrypi
 
 
 class Arduino(object):
@@ -15,7 +15,7 @@ class Arduino(object):
             self.logger.debug("Attempt to auto-detect Arduino serial port")
             coms = list_ports.comports()
             self.logger.debug(f"Available serial ports: {str([com.device for com in coms])}")
-            arduino = [com for com in coms if "Arduino" in com.description]
+            arduino = [com for com in coms if com.manufacturer is not None and "Arduino" in com.manufacturer]
             if arduino:
                 # We found an Arduino connected via USB
                 serial_port = arduino[0].device
@@ -47,16 +47,20 @@ class Arduino(object):
         await self.close()
 
     async def get_sensors(self):
-        received = (await self._reader.readline()).decode("ascii", errors="ignore").strip()
-        self.logger.debug(f"Received data from Arduino: {received}")
-        return msgpack.unpackb(received, encoding='ascii')
-
-    def set_interval(self, interval):
-        message = msgpack.packb({"interval" : interval})
-        self.logger.debug(f"Sent interval to Arduino: {message}")
-        self._writer.write(message)
+        received = (await self._reader.readuntil(b"}"))
+        self.logger.debug(f"Received data from Arduino: {received.decode('ascii', errors='ignore')}")
+        try:
+            return json.loads(received)
+        except Exception as e:
+            logging.error(e)
+            return {}
 
     def set_actuators(self, values):
-        message = msgpack.packb(values)
+        message =   f"{int(values['starboard'])}," + \
+                    f"{int(values['port'])}," + \
+                    f"{int(values['vertical'])}," + \
+                    f"{int(values['lights'])}," + \
+                    f"{int(values['interval'])}," + \
+                    f"{1 if values['armed'] else 0}\n"
         self.logger.debug(f"Sent data to Arduino: {message}")
-        self._writer.write(message)
+        self._writer.write(message.encode("ascii"))
