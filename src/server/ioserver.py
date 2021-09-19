@@ -34,12 +34,7 @@ class IOServer(multiprocessing.Process):
         self.stop_event.set()
         self.join()
         logging.debug("I/O process terminated")
-
-    async def _wait_for_stop_event(self):
-        while not self.stop_event.is_set():
-            await asyncio.sleep(2)
-        self.server.ws_server.close()
-
+    
     async def _collect_arduino_sensors(self):
         while not self.stop_event.is_set():
             # Don't get arduino data if we're not serving clients.
@@ -134,7 +129,7 @@ class IOServer(multiprocessing.Process):
             await hat_task
             await system_task
 
-        self.logger.info('Shutting down I/O server')
+        self.logger.info('Shutting down server')
         finish = time.time()
         seconds = finish - self.start_time
-        self.logger.debug(f'I/O server was live for {seconds:.1f} seconds')
+        self.logger.debug(f'Server was live for {seconds:.1f} seconds')

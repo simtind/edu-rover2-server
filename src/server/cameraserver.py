@@ -68,12 +68,14 @@ class CameraServer(multiprocessing.Process):
             await self.server
             await stop_task
 
-        self.logger.info('Shutting down camera server')
+        self.logger.info('Shutting down server')
         finish = time.time()
         seconds = finish - self.start_time
+        self.logger.debug(f'Server was live for {seconds:.1f} seconds')
+        
         if self.camera is not None:
             framerate = self.camera.stream.count / (finish - self.start_time)
         else:
             framerate = 0
-        self.logger.debug(f'Sent {self.camera.stream.count} images in {seconds:.1f} seconds at {framerate:.2f} fps')
+        self.logger.debug(f'Sent {self.camera.stream.count} images at {framerate:.2f} fps')
 

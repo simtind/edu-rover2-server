@@ -3,7 +3,10 @@ import logging
 
 from .server.cameraserver import CameraServer
 from .server.ioserver import IOServer
+from .server.advertising import AdvertisingServer
 from .server.webserver import WebServer
+
+__version__ = "0.0.8"
 
 
 def edurov_web():
@@ -45,9 +48,16 @@ def edurov_web():
 
     ioserver = IOServer(args.serial, loglevel=args.loglevel)
     camera = CameraServer(args.r, args.fps, args.loglevel)
+    advertisingserver = AdvertisingServer(loglevel=args.loglevel)
 
     logging.info("Waiting for websocket servers to go online before starting web server")
     ioserver.ready.wait()
     camera.ready.wait()
+    advertisingserver.ready.wait()
 
-    WebServer(port=args.port, websocket_servers=[ioserver, camera]).run()
+    ioserver.join()
+    logging.info("I/O server stopped. Killing other services and exiting program.")
+    camera.stop()
+    advertisingserver.stop()
+    
+
