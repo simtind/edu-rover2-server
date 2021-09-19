@@ -1,12 +1,11 @@
 import argparse
 import logging
 
+__version__ = "0.0.8"
+
 from .server.cameraserver import CameraServer
 from .server.ioserver import IOServer
 from .server.advertising import AdvertisingServer
-from .server.webserver import WebServer
-
-__version__ = "0.0.8"
 
 
 def edurov_web():

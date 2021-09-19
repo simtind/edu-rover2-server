@@ -43,11 +43,13 @@ class AdvertisingServer(multiprocessing.Process):
         self.logger.info(f"Advertising server started at {MCAST_GRP}:{self.port}")
         self.ready.set()
 
+        msg = f"edurov server v{__version__}"
+
         while not self.stop_event.is_set():
             with socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP) as sock:
                 sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, MULTICAST_TTL)
                 
-                sock.sendto(f"edurov server v{__version__}", (MCAST_GRP, self.port))
+                sock.sendto(msg.encode("ascii"), (MCAST_GRP, self.port))
 
             await asyncio.sleep(2)
 
