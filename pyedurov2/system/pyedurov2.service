@@ -3,6 +3,7 @@ Description=Run Edu-rover server
 
 [Service]
 ExecStart=python3 -m pyedurov2
+User={user_name}
 
 SystemCallArchitectures=native
 MemoryDenyWriteExecute=true

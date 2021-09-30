@@ -5,13 +5,16 @@ import os
     
 def setup_startup():
     system_directory = Path(__file__).parent
-    systemd_user_dir = os.path.expanduser("~/.config/systemd/user/")
+    systemd_user_dir = Path("/lib/systemd/system/")
 
     os.makedirs(systemd_user_dir, exist_ok=True)
+    user = os.getlogin()
 
-    shutil.copy(system_directory / "pyedurov2.service", systemd_user_dir)
+    with open(system_directory / "pyedurov2.service") as source:
+        with open(systemd_user_dir / "pyedurov2.service", "w") as target:
+            target.write(source.read().format(user_name = user))
 
-    os.system("systemctl --user daemon-reload")
-    os.system("systemctl --user enable pyedurov2.service")
+    os.system("systemctl daemon-reload")
+    os.system("systemctl enable pyedurov2.service")
 
     print("pyedurov2 service added to startup.")

@@ -2,12 +2,6 @@ import argparse
 import logging
 from ..system import setup_startup
 
-from .cameraserver import CameraServer
-from .ioserver import IOServer
-from .advertising import AdvertisingServer
-
-
-
 def run():
     parser = argparse.ArgumentParser(
         description='Start the Engage eduROV web server')
@@ -43,7 +37,7 @@ def run():
     parser.add_argument(
         '--runatstartup',
         action='store_true',
-        help='Setup server to run at startup and exit program.')
+        help='Setup server to run at startup and exit program. Must be run as sudo')
 
     args = parser.parse_args()
 
@@ -51,6 +45,10 @@ def run():
         print("Setting up pyedurov2 to execute at startup.")
         setup_startup()
         return
+
+    from .cameraserver import CameraServer
+    from .ioserver import IOServer
+    from .advertising import AdvertisingServer
 
     logging.basicConfig(level=args.loglevel)
 
