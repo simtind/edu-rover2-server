@@ -12,7 +12,7 @@ def setup_startup():
     system_directory = Path(__file__).parent / "system"
     systemd_user_dir = os.path.expanduser("~/.config/systemd/user/")
 
-    os.makedirs(systemd_user_dir)
+    os.makedirs(systemd_user_dir, exist_ok=True)
 
     shutil.copy(system_directory / "pyedurov2.service", systemd_user_dir)
 
