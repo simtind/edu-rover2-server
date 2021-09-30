@@ -6,6 +6,26 @@ import socket
 
 from .. import __version__
 
+MCAST_GRP = '224.0.0.50'
+MULTICAST_TTL = 1
+msg = f"edurov server v{__version__}"
+
+def wait_until_available():
+    
+    while True:
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP) as sock:
+            sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, MULTICAST_TTL)
+            
+            try:
+                sock.sendto(msg.encode("ascii"), (MCAST_GRP, 8083))
+                return
+            except OSError:
+                # Skip network errors.
+                pass 
+
+        time.sleep(2)
+
+
 
 class AdvertisingServer(multiprocessing.Process):
     """ Creates a new process that Advertises the Edurov server as a UDP multicast beacon """
@@ -37,19 +57,18 @@ class AdvertisingServer(multiprocessing.Process):
         logging.basicConfig(level=self.loglevel)
         self.logger = logging.getLogger("AdvertisingServer")
                     
-        MCAST_GRP = '224.0.0.50'
-        MULTICAST_TTL = 1
-
         self.logger.info(f"Advertising server started at {MCAST_GRP}:{self.port}")
         self.ready.set()
-
-        msg = f"edurov server v{__version__}"
 
         while not self.stop_event.is_set():
             with socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP) as sock:
                 sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, MULTICAST_TTL)
                 
-                sock.sendto(msg.encode("ascii"), (MCAST_GRP, self.port))
+                try:
+                    sock.sendto(msg.encode("ascii"), (MCAST_GRP, self.port))
+                except OSError:
+                    # Skip network errors.
+                    pass 
 
             await asyncio.sleep(2)
 

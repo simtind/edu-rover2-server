@@ -3,3 +3,4 @@ srv/*.egg-info
 dist
 *.pyc
 *.egg-info
+build/**

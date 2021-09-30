@@ -48,9 +48,13 @@ def run():
 
     from .cameraserver import CameraServer
     from .ioserver import IOServer
-    from .advertising import AdvertisingServer
+    from .advertising import AdvertisingServer, wait_until_available
 
     logging.basicConfig(level=args.loglevel)
+
+    wait_until_available()
+
+    logging.info("Network service is available, starting servers.")
 
     ioserver = IOServer(args.serial, loglevel=args.loglevel)
     camera = CameraServer(args.r, args.fps, args.loglevel)
