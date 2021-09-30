@@ -21,6 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
+          python3 -m pip install wheel
       - name: Build package
         run: python3 setup.py sdist bdist_wheel 
       - name: Publish package
