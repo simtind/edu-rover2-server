@@ -40,7 +40,7 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'pyedurov2 = pyedurov2:edurov_web',
+            'pyedurov2 = pyedurov2:server:run',
         ],
     },
 )

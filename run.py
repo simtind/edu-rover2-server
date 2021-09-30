@@ -1,2 +1,2 @@
-import src
-src.edurov_web()
+import pyedurov2.server
+pyedurov2.server.run()
