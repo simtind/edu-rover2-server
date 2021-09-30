@@ -4,7 +4,7 @@ import shutil
 from pathlib import Path
 import os
 
-__version__ = "0.0.9"
+__version__ = "0.0.10"
 
 from .server.cameraserver import CameraServer
 from .server.ioserver import IOServer
