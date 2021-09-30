@@ -1,0 +1,9 @@
+[Unit]
+Description=Run Edu-rover server
+After=multi-user.target
+
+[Service]
+ExecStart=pyedurov2
+
+[Install]
+WantedBy=multi-user.target

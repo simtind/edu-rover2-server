@@ -1,11 +1,25 @@
 import argparse
 import logging
+import shutil
+from pathlib import Path
+import os
 
 __version__ = "0.0.8"
 
 from .server.cameraserver import CameraServer
 from .server.ioserver import IOServer
 from .server.advertising import AdvertisingServer
+    
+
+def setup_startup():
+    directory = Path(__file__).parent
+    shutil.copy(directory / "pyedurov2.service", "/lib/systemd/system/")
+
+    os.system("sudo systemctl daemon-reload")
+    os.system("sudo systemctl enable pyedurov2.service")
+
+    print("pyedurov2 service added to startup.")
+
 
 
 def edurov_web():
@@ -40,8 +54,17 @@ def edurov_web():
         type=str,
         default='INFO',
         help='Set log level')
+    parser.add_argument(
+        '--runatstartup',
+        action='store_true',
+        help='Setup server to run at startup and exit program. Must be run as "sudo pyedurov2 --add-startup"')
 
     args = parser.parse_args()
+
+    if args.runatstartup:
+        print("Setting up pyedurov2 to execute at startup.")
+        setup_startup()
+        return
 
     logging.basicConfig(level=args.loglevel)
 
@@ -58,5 +81,3 @@ def edurov_web():
     logging.info("I/O server stopped. Killing other services and exiting program.")
     camera.stop()
     advertisingserver.stop()
-    
-
