@@ -1,0 +1,12 @@
+[Unit]
+Description=Run Edu-rover server
+
+[Service]
+ExecStart=pyedurov2
+
+SystemCallArchitectures=native
+MemoryDenyWriteExecute=true
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target

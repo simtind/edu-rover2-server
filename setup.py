@@ -36,7 +36,7 @@ setup(
 
     packages=find_packages(),
     package_data={
-        'pynrfjprog.system': ['*.service']
+        'pyedurov2.system': ['*.service']
     },
     entry_points={
         'console_scripts': [
