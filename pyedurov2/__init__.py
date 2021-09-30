@@ -11,12 +11,12 @@ from .server.ioserver import IOServer
 from .server.advertising import AdvertisingServer
     
 def setup_startup():
-    directory = Path(__file__).parent
+    system_directory = Path(__file__).parent / "system"
     systemd_user_dir = os.path.expanduser("~/.config/systemd/user/")
 
     os.makedirs(systemd_user_dir)
 
-    shutil.copy(directory / "pyedurov2.service", systemd_user_dir)
+    shutil.copy(system_directory / "pyedurov2.service", systemd_user_dir)
 
     os.system("systemctl --user daemon-reload")
     os.system("systemctl --user enable pyedurov2.service")

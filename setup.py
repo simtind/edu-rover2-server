@@ -1,0 +1,46 @@
+from setuptools import setup, find_packages
+import pyedurov2
+
+setup(
+
+    name='pyedurov2',
+
+    version=pyedurov2.__version__,
+
+    description='Server package for Edu-ROV hardware v0.7',
+    long_description='',
+
+    url = 'https://github.com/simtind/edu-rover2',
+    project_urls={
+        'Source': 'https://github.com/simtind/edu-rover2',
+        'Tracker': 'https://github.com/simtind/edu-rover2/issues',
+    },
+
+    author='Simen August Tinderholt',
+    author_email='simtind@gmail.com',
+
+    python_requires='>=3.7',
+
+    classifiers=[
+
+        'Development Status :: 5 - Production/Stable',
+
+        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+
+        'Programming Language :: Python :: 3.7',
+    ],
+
+    keywords='ROV education',
+
+    install_requires=['picamera', 'sense-hat', 'pyserial-asyncio', 'asyncio', 'psutil', 'websockets', 'aiortc', 'aiohttp'],
+
+    packages=find_packages(),
+    package_data={
+        'pynrfjprog.system': ['*.service']
+    },
+    entry_points={
+        'console_scripts': [
+            'pyedurov2 = pyedurov2:edurov_web',
+        ],
+    },
+)
