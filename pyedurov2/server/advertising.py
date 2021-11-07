@@ -8,7 +8,6 @@ from .. import __version__
 
 MCAST_GRP = '224.0.0.50'
 MULTICAST_TTL = 1
-msg = f"edurov server v{__version__}"
 
 def wait_until_available():
     
@@ -29,9 +28,10 @@ def wait_until_available():
 
 class AdvertisingServer(multiprocessing.Process):
     """ Creates a new process that Advertises the Edurov server as a UDP multicast beacon """
-    def __init__(self, loglevel="INFO", port=8083):
+    def __init__(self, loglevel="INFO", port=8083, name="edurov"):
         self.port = port
         self.loglevel = loglevel
+        self.msg = f"{name} server v{__version__}".encode("ascii")
         self.start_time = time.time()
         self.server = None
         self.ready = multiprocessing.Event()
@@ -65,7 +65,7 @@ class AdvertisingServer(multiprocessing.Process):
                 sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, MULTICAST_TTL)
                 
                 try:
-                    sock.sendto(msg.encode("ascii"), (MCAST_GRP, self.port))
+                    sock.sendto(self.msg, (MCAST_GRP, self.port))
                 except OSError:
                     # Skip network errors.
                     pass 
