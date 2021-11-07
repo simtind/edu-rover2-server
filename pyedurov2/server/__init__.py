@@ -38,12 +38,17 @@ def run():
         '--runatstartup',
         action='store_true',
         help='Setup server to run at startup and exit program. Must be run as sudo')
+    parser.add_argument(
+        '--name',
+        type=str,
+        default='edurov',
+        help='Set server advertising name. Defaults to o"edurov"')
 
     args = parser.parse_args()
 
     if args.runatstartup:
         print("Setting up pyedurov2 to execute at startup.")
-        setup_startup()
+        setup_startup(args.name)
         return
 
     from .cameraserver import CameraServer
@@ -58,7 +63,7 @@ def run():
 
     ioserver = IOServer(args.serial, loglevel=args.loglevel)
     camera = CameraServer(args.r, args.fps, args.loglevel)
-    advertisingserver = AdvertisingServer(loglevel=args.loglevel)
+    advertisingserver = AdvertisingServer(loglevel=args.loglevel, name=args.name)
 
     logging.info("Waiting for websocket servers to go online before starting web server")
     ioserver.ready.wait()
