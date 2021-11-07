@@ -27,4 +27,5 @@ Then from the edurov_server folder, run ```python -m build```
       - We do want the serial port hardware to obe enabled.
   - Allow the raspberry pi to restart and reconnect the ssh session.
 - Install pyedurov2 with ```pip install pyedurov2```
+- If you got the warning ```The script normalizer is installed in '/home/pi/.local/bin' which is not on PATH.```, call ```source ~/.profile```.
 - Call ```pyedurov2 --runatstartup --name=yourname``` to set server to start at booot with "yourname" as the advertising name.
