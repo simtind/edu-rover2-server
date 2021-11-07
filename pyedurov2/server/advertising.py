@@ -16,7 +16,7 @@ def wait_until_available():
             sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, MULTICAST_TTL)
             
             try:
-                sock.sendto(msg.encode("ascii"), (MCAST_GRP, 8083))
+                sock.sendto("edurov_waiting".encode("ascii"), (MCAST_GRP, 8083))
                 return
             except OSError:
                 # Skip network errors.
