@@ -1,11 +1,12 @@
 # EduROV server package
 
-This package contains a server for use with the hardware described in https://github.com/simtind/edu-rover2-pcb, the client described in https://github.com/simtind/edu-rover2-client and the ROV described on the EduROV webpage.
+This package contains a server for use with the [circuit boards](https://github.com/simtind/edu-rover2-pcb) and [PC client](https://github.com/simtind/edu-rover2-client) from the pyedurov2 project, and the ROV chassis described on the EduROV webpage.
 
-To install, run ```pip install pyedurov2```.
-To run the server, run ```pyedurov2```.
-To start the server at boot, run ```pyedurov2 --runatstartup```.
-See ```pyedurov2 --help``` foor more options.
+## Use
+- To install, run ```pip install pyedurov2```.
+- To run the server, run ```pyedurov2```.
+- To start the server at boot, run ```pyedurov2 --runatstartup```.
+- See ```pyedurov2 --help``` foor more options.
 
 ## Building package
 
@@ -14,7 +15,7 @@ Then from the edurov_server folder, run ```python -m build```
 
 ## Setting up Raspberry pi for EduROV
 
-- Install Raspbian
+- Install Raspbian, for example via [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 - In SD card, add the file "ssh", it should be empty.
 - Insert sd card to raspberry pi
 - Connect via ssh to raspberrypi.local
