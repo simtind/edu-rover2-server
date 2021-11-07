@@ -42,7 +42,7 @@ def run():
         '--name',
         type=str,
         default='edurov',
-        help='Set server advertising name. Defaults to o"edurov"')
+        help='Set server advertising name. Defaults to "edurov"')
 
     args = parser.parse_args()
 

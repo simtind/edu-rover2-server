@@ -4,6 +4,7 @@ This package contains a server for use with the [circuit boards](https://github.
 
 ## Use
 - To install, run ```pip install pyedurov2```.
+  - If you got the warning ```The script normalizer is installed in * which is not on PATH.```, call ```source ~/.profile```.
 - To run the server, run ```pyedurov2```.
 - To start the server at boot, run ```pyedurov2 --runatstartup```.
 - See ```pyedurov2 --help``` foor more options.
@@ -26,6 +27,6 @@ Then from the edurov_server folder, run ```python -m build```
       - We do not want a login shell to be available.
       - We do want the serial port hardware to obe enabled.
   - Allow the raspberry pi to restart and reconnect the ssh session.
-- Install pyedurov2 with ```pip install pyedurov2```
-- If you got the warning ```The script normalizer is installed in '/home/pi/.local/bin' which is not on PATH.```, call ```source ~/.profile```.
-- Call ```pyedurov2 --runatstartup --name=yourname``` to set server to start at booot with "yourname" as the advertising name.
+- For pyedurov2 to run at startup, we'll need to install and run it as sudo.
+- Install pyedurov2 with ```sudo pip install pyedurov2```
+- Call ```sudo pyedurov2 --runatstartup --name=yourname``` to set server to start at boot with "yourname" as the advertising name.
