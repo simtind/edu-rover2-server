@@ -10,10 +10,10 @@ setup(
     description='Server package for Edu-ROV hardware v0.7',
     long_description='',
 
-    url = 'https://github.com/simtind/edu-rover2',
+    url = 'https://github.com/simtind/edu-rover2-server',
     project_urls={
-        'Source': 'https://github.com/simtind/edu-rover2',
-        'Tracker': 'https://github.com/simtind/edu-rover2/issues',
+        'Source': 'https://github.com/simtind/edu-rover2-server',
+        'Tracker': 'https://github.com/simtind/edu-rover2-server/issues',
     },
 
     author='Simen August Tinderholt',
