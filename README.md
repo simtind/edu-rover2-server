@@ -20,7 +20,11 @@ Then from the edurov_server folder, run ```python -m build```
 - Insert sd card to raspberry pi
 - Connect via ssh to raspberrypi.local
 - Via raspi-config:
-  - Enable camera
-  - Enable uart
-- Install pyedurov2
-- Call pyedurov2 --runatstartup --name=yourname to set server to start at booot with yourname as the advertising name.
+  - Under Interface Options
+    - Enable camera
+    - Enable Serial Port:
+      - We do not want a login shell to be available.
+      - We do want the serial port hardware to obe enabled.
+  - Allow the raspberry pi to restart and reconnect the ssh session.
+- Install pyedurov2 with ```pip install pyedurov2```
+- Call ```pyedurov2 --runatstartup --name=yourname``` to set server to start at booot with "yourname" as the advertising name.
