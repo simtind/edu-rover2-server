@@ -15,7 +15,7 @@ Then from the edurov_server folder, run ```python -m build```
 
 ## Setting up Raspberry pi for EduROV
 
-- Install Raspbian, for example via [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
+- Install Raspberry PI OS (32-bit), for example via [Raspberry Pi Imager](https://www.raspberrypi.com/software/)
 - In SD card, add the file "ssh", it should be empty.
 - Insert sd card to raspberry pi
 - Connect via ssh to raspberrypi.local
